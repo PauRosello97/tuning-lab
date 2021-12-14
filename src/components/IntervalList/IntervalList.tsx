@@ -10,17 +10,11 @@ interface IntervalListProps {
 function IntervalList(props: IntervalListProps) {
 
     const handleRemove = (n: number) => {
-        if (props.intervals.length == 0) {
-            props.setter([]);
-            console.log("remove all");
-        }
-        else {
-            let newArray: Interval[] = [];
-            props.intervals.forEach((interval: Interval, i: number) => {
-                if (i != n) newArray.push(interval);
-            })
-            props.setter(newArray);
-        }
+        let newArray: Interval[] = [];
+        props.intervals.forEach((interval: Interval, i: number) => {
+            if (i != n) newArray.push(interval);
+        })
+        props.setter(newArray);
     }
 
     return (
@@ -29,9 +23,11 @@ function IntervalList(props: IntervalListProps) {
                 <tr>
                     <th>Ratio</th>
                     <th></th>
-                    <th>Tenney distance</th>
+                    <th>Distance</th>
                     <th>Cents</th>
                     <th>Limit</th>
+                    <th>Coordinates</th>
+                    <th>Distance Coordinates</th>
                     <th>Remove</th>
                 </tr>
             </thead>
@@ -40,9 +36,11 @@ function IntervalList(props: IntervalListProps) {
                     return <tr key={i}>
                         <td>{interval.num} / {interval.denom}</td>
                         <td>{interval.ratio.toFixed(5)}</td>
-                        <td>{interval.tenneyDistance.toFixed(5)}</td>
+                        <td>{interval.distance.toFixed(5)}</td>
                         <td>{Math.round(interval.cents)}</td>
                         <td>{interval.limit}-limit</td>
+                        <td>[{interval.coordinates.join(", ")}]</td>
+                        <td>[{interval.distanceCoordinates.join(", ")}]</td>
                         <td onClick={() => handleRemove(i)}>X</td>
                     </tr>
                 })}

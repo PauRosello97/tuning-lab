@@ -2,9 +2,9 @@ export default interface Interval {
     num: number;
     denom: number;
     ratio: number;
-    tenneyDistance: number;
+    distance: number;
     cents: number;
-    numFactors: number[];
-    denomFactors: number[];
     limit: number;
+    coordinates: number[];
+    distanceCoordinates: number[];
 }
